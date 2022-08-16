@@ -6,7 +6,9 @@
 
 void	print_take_fork(t_main *m, t_philo *p)
 {
-	gettimeofday(&p->now, NULL);
+	//todo Bug when this fonction is called, exit the program weirdly and
+	// EXIT
+	timestamp();
 	pthread_mutex_lock(m->write);
 	printf("_______________________________________________________\n");
 	printf("\n ⏰ %.1f \t 🥄 %ld Philo has taken a fork\n",

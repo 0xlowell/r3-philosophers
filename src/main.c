@@ -6,13 +6,13 @@
 
 void	action(t_main *m, t_philo *p, long fork1, long fork2)
 {
-	pthread_mutex_lock(&m->fork[fork1]);
+	pthread_mutex_lock(&(m->fork[fork1]));
 	print_take_fork(m, p);
-	pthread_mutex_lock(&m->fork[fork2]);
+	pthread_mutex_lock(&(m->fork[fork2]));
 	print_take_fork(m, p);
 	print_eat(m, p);
 	usleep(m->arg.eat);
-	gettimeofday(&p->time_eat, NULL);
+	timestamp();
 	pthread_mutex_unlock(&m->fork[fork1]);
 	pthread_mutex_unlock(&m->fork[fork2]);
 	print_sleep(m, p);
@@ -22,27 +22,28 @@ void	action(t_main *m, t_philo *p, long fork1, long fork2)
 
 void	dinning(t_main *m, t_philo* p)
 {
+	m->nbr_p = m->arg.nbr;
 	if (m->nbr_p == 1)
 		action(m, p, 0, m->arg.nbr - 1);
 	if (m->nbr_p % 2 == 0)
 	{
 		usleep(800);
-		action(m, p, p->nbr_id - 1, p->nbr_id - 2);
+		action(m, p, 1, 2);
 	}
 	else
 		action(m, p, p->nbr_id - 1, p->nbr_id - 2);
 }
 
-void	*p_thread(void *arg_struct)
+void	*p_thread(void *mm)
 {
-	t_main	*m;
+	t_main *m;
+	m = (t_main *)mm;
 
-	m = (t_main *)arg_struct;
-	gettimeofday(&m->p->time_eat, NULL);
+//	gettimeofday(&m->p->time_eat, NULL);
 	if (m->arg.nbr_eat != -1)
 	{
-		m->p->eat = 0;
-		while (m->d_or_a != 1 && m->p->eat++ < m->arg.nbr_eat)
+		m->p->eated = 0;
+		while (m->d_or_a != 1 && m->p->eated++ < m->arg.nbr_eat)
 			dinning(m, m->p);
 	}
 	else
@@ -51,16 +52,27 @@ void	*p_thread(void *arg_struct)
 	return (0);
 }
 
+void	init_philo(t_main *m)
+{
+	if (m)
+	{
+		m->p = malloc(m->arg.nbr * sizeof(int));
+		mem_check(m->p);
+	}
+
+}
+
 int thread_init(t_main *m)
 {
 	int status;
 	int i;
 
+	init_philo(m);
 	status = 0;
 	i = 0;
 	while (i < m->arg.nbr && status == 0)
 	{
-		status = pthread_create(&m->p[i].id, NULL, p_thread, main);
+		status = pthread_create(&m->p[i].id, NULL, p_thread, m);
 		usleep(1);
 		m->p->nbr_id = i;
 		i++;

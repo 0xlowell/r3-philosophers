@@ -73,7 +73,7 @@ typedef struct s_philo
 	pthread_t 		id;
 	long 			nbr_id;
 	struct timeval	time_eat;
-	int 			eat;
+	int 			eated;
 	struct timeval	now;
 }			t_philo;
 
@@ -89,7 +89,6 @@ typedef struct s_main
 	struct timeval	start;		/*start of gettimeofday()*/
 //	t_node			*head;		/*head node of linked list node*/
 //	t_node			*tail;		/*tail node of linked list node*/
-	int				nbr_node;	/*number of node created*/
 }			t_main;
 
 /* ---- Files .c ---- */
@@ -101,7 +100,7 @@ double	timer_ms(struct timeval start, struct timeval now);
 void	print_take_fork(t_main *m, t_philo *p);
 void	action(t_main *m, t_philo *p, long fork1, long fork2);
 void	dinning(t_main *m, t_philo* p);
-void	*p_thread(void *arg_struct);
+void	*p_thread(void *mm);
 int 	thread_init(t_main *m);
 /*
  * main_utils.c
@@ -110,6 +109,7 @@ int		error_message(char *error);							/*print *error message*/
 int		exit_program(t_main *m);							/*exit program in a proper way*/
 void	free_f_nd_p(t_main *m);
 double	timer_ms(struct timeval start, struct timeval now);
+long long    timestamp(void);
 /*
  * parsing.c DONE
 */

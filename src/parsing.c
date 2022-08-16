@@ -8,31 +8,32 @@ int set_up_f_nd_p(t_main *m)
 {
 	m->nbr_f = 0;
 	while (m->nbr_f < m->arg.nbr)
-		if (pthread_mutex_init(&m->fork[m->nbr_f++], NULL) != 0)
+		if (pthread_mutex_init(&(m->fork[m->nbr_f++]), NULL) != 0)
 			return (exit_program(m));
 	m->nbr_f = 0;
-	m->nbr_p = 0;
-	while (m->nbr_p < m->arg.nbr)
-		if (pthread_mutex_init(&m->fork[m->nbr_p++], NULL) != 0)
-			return (exit_program(m));
-	m->nbr_p = 0;
+	//m->nbr_p = 0;
+	//while (m->nbr_p < m->arg.nbr)
+	//	if (pthread_mutex_init(&m->fork[m->nbr_p++], NULL) != 0)
+	//		return (exit_program(m));
+	//m->nbr_p = 0;
 	return (0);
 }
 
 int error_args_limit(t_main *m)
 {
-	if (m->arg.death <= 0 || m->arg.nbr > INT_MAX)
+	if (m->arg.nbr <= 0 || m->arg.nbr > INT_MAX)
 		return (error_message(INT_LIM));
-	if (m->arg.death <= 0 || m->arg.nbr < 1)
+	if (m->arg.nbr < 1)
 		return (error_message(NPHILO));
 	if (m->arg.death <= 0 || m->arg.death < INT_MIN || m->arg.death > INT_MAX)
 		return (error_message(INT_LIM));
-	if (m->arg.death <= 0 || m->arg.eat < INT_MIN || m->arg.eat > INT_MAX)
+	if (m->arg.eat <= 0 || m->arg.eat < INT_MIN || m->arg.eat > INT_MAX)
 		return (error_message(INT_LIM));
-	if (m->arg.death <= 0 || m->arg.sleep < INT_MIN || m->arg.sleep > INT_MAX)
+	if (m->arg.sleep <= 0 || m->arg.sleep < INT_MIN || m->arg.sleep > INT_MAX)
 		return (error_message(INT_LIM));
-	if (m->arg.death <= 0 || m->arg.nbr_eat < INT_MIN || m->arg.nbr_eat > INT_MAX)
-		return (error_message(INT_LIM));
+	if (!m->arg.nbr_eat)
+		if (m->arg.nbr_eat <= 0 || m->arg.nbr_eat < INT_MIN || m->arg.nbr_eat > INT_MAX)
+			return (error_message(INT_LIM));
 	return (0);
 }
 
@@ -93,5 +94,6 @@ int	parse_and_init(t_main *m, int argc, char **argv)
 		return (ERROR);
 	if (set_up_f_nd_p(m) == ERROR)
 		return(ERROR);
+	timestamp();
 	return (0);
 }
