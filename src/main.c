@@ -9,6 +9,7 @@
 /* p_thread
  * look at understanding fct,
  * how go get i of main, is it important ?
+ * test
  * */
 
 void	action(t_main *m, t_philo *p, long fork1, long fork2)
