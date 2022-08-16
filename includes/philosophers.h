@@ -66,16 +66,17 @@ typedef struct	s_arg
  * If not specified, the simulation stops when a philosopher dies.*/
 }			t_arg;
 
-typedef struct s_philo
+typedef struct s_node
 {
-//	struct s_node	*next;		/*next node*/
-//	struct s_node	*prev;		/*previous node*/
+	struct s_node	*next;		/*next node*/
+	struct s_node	*prev;		/*previous node*/
 	pthread_t 		id;
 	long 			nbr_id;
+	int 			nbr_node;
 	struct timeval	time_eat;
 	int 			eated;
 	struct timeval	now;
-}			t_philo;
+}			t_node;
 
 typedef struct s_main
 {
@@ -83,12 +84,12 @@ typedef struct s_main
 	pthread_mutex_t *fork;		/*mutex, known as "fork" in philosophers dinning problems*/
 	int 			nbr_f;
 	t_philo			*p;
-	long 			nbr_p;
+	int 			nbr_node;
 	int				d_or_a;		/*states*/
 	pthread_mutex_t	*write;		/* lock writing in term */
 	struct timeval	start;		/*start of gettimeofday()*/
-//	t_node			*head;		/*head node of linked list node*/
-//	t_node			*tail;		/*tail node of linked list node*/
+	t_node			*head;		/*head node of linked list node*/
+	t_node			*tail;		/*tail node of linked list node*/
 }			t_main;
 
 /* ---- Files .c ---- */
@@ -135,6 +136,13 @@ void	print_take_fork(t_main *m, t_philo *p);
 void	print_eat(t_main *m, t_philo *p);
 void	print_sleep(t_main *m, t_philo *p);
 void	print_thinking(t_main *m, t_philo *p);
+/*
+ * linked_list.c
+ */
+void	last_del_lst(t_node **tail);
+int	del_lst(t_node	**head, t_node **tail);
+int	add_node(t_node **head, t_node **tail, int nbr);
+int	init_lst(t_main *m);
 
 
 #endif
