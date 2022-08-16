@@ -1,0 +1,16 @@
+# ninja log v5
+4	421	1660129967000000000	CMakeFiles/r3_philosophers.dir/exemple/42_philosophers/philo/src/print.c.o	f9a2ba78d1230b91
+4	422	1660129967000000000	CMakeFiles/r3_philosophers.dir/exemple/42_philosophers/philo/src/threads.c.o	35f2c02a8ca0526e
+5	369	1660129967000000000	CMakeFiles/r3_philosophers.dir/exemple/42_philosophers/philo/utils/src/ft_bzero.c.o	2cb34adab0224987
+3	409	1660129967000000000	CMakeFiles/r3_philosophers.dir/exemple/42_philosophers/philo/src/init.c.o	a1f617e713cd3235
+4	420	1660129967000000000	CMakeFiles/r3_philosophers.dir/exemple/42_philosophers/philo/src/main.c.o	c6bfc91bb2f29414
+1	119	1660221783000000000	CMakeFiles/r3_philosophers.dir/src/linked_list.c.o	5511fad005f29472
+4	421	1660129967000000000	CMakeFiles/r3_philosophers.dir/exemple/42_philosophers/philo/src/qol.c.o	a414a0da387e9a4e
+5	422	1660129967000000000	CMakeFiles/r3_philosophers.dir/exemple/42_philosophers/philo/utils/src/ft_atol.c.o	cbd837367b959b4d
+1	117	1660221783000000000	CMakeFiles/r3_philosophers.dir/src/parsing.c.o	fbc82b6b94eed101
+1	90	1660221783000000000	CMakeFiles/r3_philosophers.dir/src/main_utils.c.o	74fe0279c8d6eff9
+409	475	1660129967000000000	CMakeFiles/r3_philosophers.dir/src/init.c.o	ac7372ef02d53900
+3	436	1660129967000000000	CMakeFiles/r3_philosophers.dir/exemple/42_philosophers/philo/src/linked_list.c.o	ef538a7ab88ef26d
+4	422	1660129967000000000	CMakeFiles/r3_philosophers.dir/exemple/42_philosophers/philo/src/time.c.o	7e50e98cd0e04641
+1	117	1660221783000000000	CMakeFiles/r3_philosophers.dir/src/main.c.o	750559f08cc036d0
+370	464	1660129967000000000	CMakeFiles/r3_philosophers.dir/exemple/42_philosophers/philo/utils/src/ft_calloc.c.o	2d743b97200643c5
