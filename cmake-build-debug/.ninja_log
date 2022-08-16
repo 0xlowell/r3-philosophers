@@ -1,5 +1,11 @@
 # ninja log v5
-1	119	1660221783000000000	CMakeFiles/r3_philosophers.dir/src/linked_list.c.o	5511fad005f29472
-1	117	1660221783000000000	CMakeFiles/r3_philosophers.dir/src/parsing.c.o	fbc82b6b94eed101
-1	90	1660221783000000000	CMakeFiles/r3_philosophers.dir/src/main_utils.c.o	74fe0279c8d6eff9
-1	117	1660221783000000000	CMakeFiles/r3_philosophers.dir/src/main.c.o	750559f08cc036d0
+1	92	1660667682000000000	CMakeFiles/r3_philosophers.dir/src/linked_list.c.o	d0800d5e8ade2c45
+2	56	1660669313000000000	CMakeFiles/r3_philosophers.dir/src/print.c.o	62f51ac0db60c4dd
+87	150	1660668225000000000	r3_philosophers	164e449b2a6cf104
+1	74	1660669313000000000	CMakeFiles/r3_philosophers.dir/src/parsing.c.o	8019c547a65014ad
+1	75	1660669313000000000	CMakeFiles/r3_philosophers.dir/src/main_utils.c.o	a7e418d569e5df9a
+1	84	1660669313000000000	CMakeFiles/r3_philosophers.dir/src/main.c.o	24048991b9a37502
+1	49	1660669336000000000	CMakeFiles/r3_philosophers.dir/src/utils.c.o	622a4d572a2638c3
+49	97	1660669336000000000	r3_philosophers	6c631e3afdec2670
+1	53	1660669382000000000	CMakeFiles/r3_philosophers.dir/src/main_utils.c.o	a7e418d569e5df9a
+53	114	1660669382000000000	r3_philosophers	6c631e3afdec2670

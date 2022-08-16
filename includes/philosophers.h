@@ -30,7 +30,6 @@
 */
 
 # include "philosophers.h"
-# include "utils.h"
 
 /*
  * Macro for error
@@ -43,6 +42,8 @@
 # define INT_LIM 	"\n❌ Args value exceed limit required\n"
 # define NDIGIT 	"\n❌ Args value aren't digits\n"
 # define ERROR		1
+# define TRUE		0
+# define FALSE		-1
 
 /*
  * Variables Structures
@@ -86,8 +87,8 @@ typedef struct s_main
 	int				d_or_a;		/*states*/
 	pthread_mutex_t	*write;		/* lock writing in term */
 	struct timeval	start;		/*start of gettimeofday()*/
-	t_node			*head;		/*head node of linked list node*/
-	t_node			*tail;		/*tail node of linked list node*/
+//	t_node			*head;		/*head node of linked list node*/
+//	t_node			*tail;		/*tail node of linked list node*/
 	int				nbr_node;	/*number of node created*/
 }			t_main;
 
@@ -120,9 +121,13 @@ int		parse_and_init(t_main *m, int argc, char **argv);	/*sub-main for parsing an
 /*
  * libft_utils.c
 */
-long	ft_atol(const char *str);							/*convert char to long*/
 int		mem_check(void *ptr);								/*memory allocation security*/
-int		ft_isdigit(int c);									/*RTFM*/
+int	ft_isdigit(int c);										/*RTFM*/
+long	ft_atol(const char *str);
+void	*ft_calloc(size_t count, size_t size);
+//void	*ft_bzero(void *s, size_t n);
+void    *ft_memset(void *b, int c, size_t len);
+
 /*
  * print.c
 */
@@ -130,4 +135,6 @@ void	print_take_fork(t_main *m, t_philo *p);
 void	print_eat(t_main *m, t_philo *p);
 void	print_sleep(t_main *m, t_philo *p);
 void	print_thinking(t_main *m, t_philo *p);
+
+
 #endif

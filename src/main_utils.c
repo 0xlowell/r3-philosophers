@@ -1,7 +1,5 @@
 
-#include "philosophers.h"
-#include "utils.h"
-
+#include "../includes/philosophers.h"
 
 int	error_message(char *error)
 {
@@ -11,11 +9,12 @@ int	error_message(char *error)
 
 int	exit_program(t_main *m)
 {
-	if (m->fork != NULL)
+	if (!m->fork )
 		free_f_nd_p(m);
-	if (m->p != NULL)
+	if (!m->p)
 		free_f_nd_p(m);
 	m = NULL;
+	return (-1);
 }
 
 void	free_f_nd_p(t_main *m)
@@ -33,7 +32,7 @@ void	free_f_nd_p(t_main *m)
 	if (m->p != NULL)
 	{
 		i = 0;
-		while (i < m->arg.nbr)
+		while (i <= m->arg.nbr)
 			free(&m->p[i++]);
 		free(m->p);
 		m->p = NULL;

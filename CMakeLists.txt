@@ -8,9 +8,8 @@ include_directories(includes)
 
 add_executable(r3_philosophers
         includes/philosophers.h
-        includes/utils.h
         src/parsing.c
-        src/linked_list.c
         src/main.c
         src/main_utils.c
-        src/print.c)
+        src/print.c
+        src/utils.c)

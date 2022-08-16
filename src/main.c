@@ -3,27 +3,34 @@
 //
 
 #include "../includes/philosophers.h"
-#include "../includes/utils.h"
-
-//todo
-/* p_thread
- * look at understanding fct,
- * how go get i of main, is it important ?
- * test
- * */
 
 void	action(t_main *m, t_philo *p, long fork1, long fork2)
 {
 	pthread_mutex_lock(&m->fork[fork1]);
 	print_take_fork(m, p);
-	//todo
+	pthread_mutex_lock(&m->fork[fork2]);
+	print_take_fork(m, p);
+	print_eat(m, p);
+	usleep(m->arg.eat);
+	gettimeofday(&p->time_eat, NULL);
+	pthread_mutex_unlock(&m->fork[fork1]);
+	pthread_mutex_unlock(&m->fork[fork2]);
+	print_sleep(m, p);
+	usleep(m->arg.sleep);
+	print_thinking(m, p);
 }
 
 void	dinning(t_main *m, t_philo* p)
 {
 	if (m->nbr_p == 1)
 		action(m, p, 0, m->arg.nbr - 1);
-	//todo
+	if (m->nbr_p % 2 == 0)
+	{
+		usleep(800);
+		action(m, p, p->nbr_id - 1, p->nbr_id - 2);
+	}
+	else
+		action(m, p, p->nbr_id - 1, p->nbr_id - 2);
 }
 
 void	*p_thread(void *arg_struct)
@@ -35,10 +42,13 @@ void	*p_thread(void *arg_struct)
 	if (m->arg.nbr_eat != -1)
 	{
 		m->p->eat = 0;
-		while (m->p->eat < m->arg.nbr_eat)
+		while (m->d_or_a != 1 && m->p->eat++ < m->arg.nbr_eat)
 			dinning(m, m->p);
-		
 	}
+	else
+		while (m->d_or_a != 1)
+			dinning(m, m->p);
+	return (0);
 }
 
 int thread_init(t_main *m)

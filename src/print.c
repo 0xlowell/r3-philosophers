@@ -3,7 +3,6 @@
 //
 
 #include "../includes/philosophers.h"
-#include "../includes/utils.h"
 
 void	print_take_fork(t_main *m, t_philo *p)
 {

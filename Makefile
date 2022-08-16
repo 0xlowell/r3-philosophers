@@ -25,7 +25,7 @@ RESET	= \033[0m
 
 
 SRCS_DIR		= ./src/
-SRCS_FILES		= main.c main_utils.c init.c linked_list.c
+SRCS_FILES		= main.c main_utils.c utils.c parsing.c print.c
 
 SRCS			:= ${patsubst %, ${SRCS_DIR}%, ${SRCS_FILES}}
 
@@ -37,10 +37,7 @@ OBJS			:= ${patsubst %, ${O_DIR}%, ${OBJS_FILES}}
 
 HEADS_DIR		= ./includes/
 
-NAME			= r3-philosophers
-
-
-LIBUTILS		= ./utils/
+NAME			= philo
 
 
 MAKELIB			= ${MAKE} -C
@@ -49,7 +46,7 @@ AR				= ar rcs
 MKDIR			= mkdir
 RM				= rm -rf
 
-CFLAGS			= -Wall -Wextra -Werror -g3 -fsanitize=address -pthread
+CFLAGS			= -Wall -Wextra -Werror -g3 -pthread -fsanitize=address
 
 TSEP			= ${SEP}=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=${RESET}
 
@@ -58,17 +55,16 @@ TSEP			= ${SEP}=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=${RE
 all:			${NAME}
 
 ${NAME}:		${O_DIR} ${OBJS}
-				@printf "\n"
-				@${MAKELIB} ${LIBUTILS}
-				@printf "${TSEP}\n"
-				@printf "${GREEN} 💻 Successfully compiled ${NAME} .o's${RESET} ✅\n"
-				@${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBUTILS}/libutils.a
-				@printf "${GREEN} 💻 Successfully created ${NAME} executable${RESET} ✅\n"
-				@printf "${TSEP}\n"
+			@printf "\n"
+
+			@printf "${GREEN} 💻 Successfully compiled ${NAME} .o's${RESET} ✅\n"
+
+				@${CC} ${CFLAGS} -o ${NAME} ${OBJS}
+			@printf "${GREEN} 💻 Successfully created ${NAME} executable${RESET} ✅\n"
 
 ${O_DIR}:
 				@${MKDIR} ${O_DIR}
-				@printf "\n${BUILD}${O_DIR} Directory Created 📎${RESET}\n\n"
+			@printf "\n${BUILD}${O_DIR} Directory Created 📎${RESET}\n\n"
 
 ${O_DIR}%.o:${SRCS_DIR}%.c
 				@${CC} ${CFLAGS} -I${HEADS_DIR} -o $@ -c $<
@@ -76,20 +72,17 @@ ${O_DIR}%.o:${SRCS_DIR}%.c
 
 clean :
 				@${RM} ${O_DIR}
-				@${MAKELIB} ${LIBUTILS} clean
 				@printf "${RED} 🧹 Deleted ${NAME} .o's${RESET} ❌\n"
 
 fclean :
 				@${RM} ${O_DIR}
 				@printf "${RED} 🧹 Deleted ${NAME} .o's${RESET} ❌\n"
 				@${RM} ${NAME} ${NAME}.dSYM
-				@${MAKELIB} ${LIBUTILS} fclean
 				@printf "${RED} 💥 Deleted ${NAME} files${RESET} ❌\n"
 
 re : 			fclean all
 
 norm :
-				@${MAKELIB} ${LIBUTILS} norm
 				@printf "${DUCK} 🐥 Checking Norm for ${NAME}${RESET}\n"
 				@norminette ${SRCS}
 				@norminette ${HEADS_DIR}

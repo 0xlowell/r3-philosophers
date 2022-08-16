@@ -2,8 +2,7 @@
 // Created by Lowell Zima on 8/8/22.
 //
 
-#include "philosophers.h"
-#include "utils.h"
+#include "../includes/philosophers.h"
 
 int set_up_f_nd_p(t_main *m)
 {
@@ -44,9 +43,12 @@ int	error_arg_digit(int argc, char **argv)
 
 	i = 0;
 	y = 0;
-	while (++i <= argc)
+	while (++i < argc)
 	{
-		if (argv[i][y] != ft_isdigit(argv[i][y]))
+		printf("av = %s\n", argv[i]);
+		while (argv[i][y] == ft_isdigit(argv[i][y]))
+			y++;
+		if (ft_isdigit(argv[i][y] == 0))
 			return (1);
 		y++;
 	}
