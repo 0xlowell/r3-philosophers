@@ -6,11 +6,14 @@
 
 int set_up_f_nd_p(t_main *m)
 {
-	m->nbr_f = 0;
-	while (m->nbr_f < m->arg.nbr)
-		if (pthread_mutex_init(&(m->fork[m->nbr_f++]), NULL) != 0)
+	int i;
+
+	i = 0;
+	while (i < m->arg.nbr)
+		if (pthread_mutex_init(&(m->fork[i++]), NULL) != 0)
 			return (exit_program(m));
-	m->nbr_f = 0;
+	//if ((pthread_mutex_init(m->write, NULL)) != 0)
+		//return (exit_program(m));
 	return (0);
 }
 

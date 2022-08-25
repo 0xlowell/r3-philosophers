@@ -53,7 +53,7 @@ void	free_f_nd_p(t_main *m)
 		free(m->fork);
 		m->fork = NULL;
 	}
-	if (m->p != NULL)
+	if (!m->p)
 	{
 		i = 0;
 		while (i <= m->arg.nbr)

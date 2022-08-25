@@ -4,7 +4,7 @@
 
 #include "../includes/philosophers.h"
 
-void	action(t_main *m, t_philo *p, long fork1, long fork2)
+void	action(t_main *m, t_node *p, long fork1, long fork2)
 {
 	pthread_mutex_lock(&(m->fork[fork1]));
 	print_take_fork(m, p);
@@ -20,18 +20,18 @@ void	action(t_main *m, t_philo *p, long fork1, long fork2)
 	print_thinking(m, p);
 }
 
-void	dinning(t_main *m, t_philo* p)
+void	dinning(t_main *m, t_node* p)
 {
-	m->nbr_p = m->arg.nbr;
-	if (m->nbr_p == 1)
+	m->nbr_node = (int)m->arg.nbr;
+	if (m->nbr_node == 1)
 		action(m, p, 0, m->arg.nbr - 1);
-	if (m->nbr_p % 2 == 0)
+	if (m->nbr_node % 2 == 0)
 	{
 		usleep(800);
 		action(m, p, 1, 2);
 	}
 	else
-		action(m, p, p->nbr_id - 1, p->nbr_id - 2);
+		action(m, p, p->nbr_node - 1, p->nbr_node- 2);
 }
 
 void	*p_thread(void *mm)
@@ -39,6 +39,7 @@ void	*p_thread(void *mm)
 	t_main *m;
 	m = (t_main *)mm;
 
+	timestamp();
 //	gettimeofday(&m->p->time_eat, NULL);
 	if (m->arg.nbr_eat != -1)
 	{
@@ -59,22 +60,26 @@ void	init_philo(t_main *m)
 		m->p = malloc(m->arg.nbr * sizeof(int));
 		mem_check(m->p);
 	}
-
 }
 
 int thread_init(t_main *m)
 {
 	int status;
 	int i;
+	t_node *cur;
 
 	init_philo(m);
 	status = 0;
 	i = 0;
 	while (i < m->arg.nbr && status == 0)
 	{
-		status = pthread_create(&m->p[i].id, NULL, p_thread, m);
+		//todo
+		//increment struct node to stock id, better than p tab
+		status = pthread_create(&(m->p[i].id), NULL, p_thread, m);
+		printf("i: %d\n %p\n", i, &(m->p->id));
+		printf("status: %d\n", status);
 		usleep(1);
-		m->p->nbr_id = i;
+		m->p->nbr_node = i;
 		i++;
 	}
 	if (status != 0)
@@ -116,7 +121,8 @@ int	main(int argc, char **argv)
 	 * 		struct timeval * is by default in lib.
 	 * 		set void *, for default settings
 	 */
-	gettimeofday(&main.start, NULL);
+	timestamp();
+	//gettimeofday(&main.start, NULL);
 	/* injected threads into linked chain created (as much as nb of philo)
 	 * |_ loop on struct * to injecte pthread_create in struct philo -> id
 	 * 		|__ int pthread_create(
@@ -130,6 +136,8 @@ int	main(int argc, char **argv)
 	 * 			void * _Nullable __restrict);
 	 * 		|__ insert a usleep(1)
 	 */
+	if (init_lst(&main) != 0)
+		return(exit_program(&main));
 	if (thread_init(&main) == ERROR)
 		return (exit_program(&main));
 }

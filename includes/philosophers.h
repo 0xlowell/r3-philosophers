@@ -71,7 +71,6 @@ typedef struct s_node
 	struct s_node	*next;		/*next node*/
 	struct s_node	*prev;		/*previous node*/
 	pthread_t 		id;
-	long 			nbr_id;
 	int 			nbr_node;
 	struct timeval	time_eat;
 	int 			eated;
@@ -82,8 +81,8 @@ typedef struct s_main
 {
 	t_arg			arg;		/*data*/
 	pthread_mutex_t *fork;		/*mutex, known as "fork" in philosophers dinning problems*/
-	int 			nbr_f;
-	t_philo			*p;
+	int 			nbr_p;
+	t_node			*p;
 	int 			nbr_node;
 	int				d_or_a;		/*states*/
 	pthread_mutex_t	*write;		/* lock writing in term */
@@ -98,9 +97,9 @@ typedef struct s_main
  */
 int		main(int argc, char **argv);
 double	timer_ms(struct timeval start, struct timeval now);
-void	print_take_fork(t_main *m, t_philo *p);
-void	action(t_main *m, t_philo *p, long fork1, long fork2);
-void	dinning(t_main *m, t_philo* p);
+void	print_take_fork(t_main *m, t_node *p);
+void	action(t_main *m, t_node *p, long fork1, long fork2);
+void	dinning(t_main *m, t_node* p);
 void	*p_thread(void *mm);
 int 	thread_init(t_main *m);
 /*
@@ -132,10 +131,10 @@ void    *ft_memset(void *b, int c, size_t len);
 /*
  * print.c
 */
-void	print_take_fork(t_main *m, t_philo *p);
-void	print_eat(t_main *m, t_philo *p);
-void	print_sleep(t_main *m, t_philo *p);
-void	print_thinking(t_main *m, t_philo *p);
+void	print_take_fork(t_main *m, t_node *p);
+void	print_eat(t_main *m, t_node *p);
+void	print_sleep(t_main *m, t_node *p);
+void	print_thinking(t_main *m, t_node *p);
 /*
  * linked_list.c
  */
