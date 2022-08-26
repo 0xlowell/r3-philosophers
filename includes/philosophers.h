@@ -98,7 +98,7 @@ typedef struct s_main
 int		main(int argc, char **argv);
 void	print_take_fork(t_main *m, t_node *p);
 void	action(t_main *m, t_node *p, long fork1, long fork2);
-void	dinning(t_node *thread,  pthread_mutex_t* p);
+void	dinning(t_main *main, t_node *thread,  pthread_mutex_t* p);
 void	*routine(void *main);
 int 	thread_init(t_main *m);
 /*

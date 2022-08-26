@@ -4,11 +4,55 @@
 
 #include "../includes/philosophers.h"
 
+//todo link dinning fonction with limit and set up checker for death
 
-void	dinning(t_node *thread, pthread_mutex_t *fork)
+void	dinning(t_main *m, t_node *thread, pthread_mutex_t *fork)
 {
-	printf("thread->i_node %d\n", thread->i_node);
-	(void)fork;
+//	printf("thread->i_node %d\n", thread->i_node);
+	//thread take his fork N0 + take N1 fork
+	//thread can eat (time)
+	//thread can sleep (time)
+	//thread can think
+	int n = thread->i_node;
+
+	pthread_mutex_lock(&fork[n + 0]);
+
+	pthread_mutex_lock(m->write);
+	/*lock write*/printf("%d take his fork[%d]\n", n, n + 0);/*unlock write*/
+	pthread_mutex_unlock(m->write);
+
+	pthread_mutex_lock(&fork[n + 1]);
+
+	pthread_mutex_lock(m->write);
+	/*lock write*/printf("%d take side fork[%d]\n", n, n + 1);/*unlock write*/
+	pthread_mutex_unlock(m->write);
+
+	pthread_mutex_lock(m->write);
+	/*lock write*/printf("%d is eating at \t\t %lld\n", n, timestamp());/*unlock write*/
+	pthread_mutex_unlock(m->write);
+
+	usleep(m->arg.eat);
+	pthread_mutex_unlock(&fork[n + 0]);
+	pthread_mutex_unlock(&fork[n + 1]);
+
+	pthread_mutex_lock(m->write);
+	/*lock write*/printf("%d is sleeping at \t %lld\n", n, timestamp());/*unlock write*/
+	pthread_mutex_unlock(m->write);
+
+	usleep(m->arg.sleep);
+
+	pthread_mutex_lock(m->write);
+	/*lock write*/printf("%d stop sleeping at \t %lld\n", n, timestamp());/*unlock write*/
+	pthread_mutex_unlock(m->write);
+
+	pthread_mutex_lock(m->write);
+	/*lock write*/printf("%d is thinking at \t %lld\n", n, timestamp());/*unlock write*/
+	pthread_mutex_unlock(m->write);
+
+//	pthread_mutex_lock(m->write);
+//	/*lock write*/printf("%d need to eat at \t %lld\n", n, (timestamp() + m->arg.death));/*unlock write*/
+//	pthread_mutex_unlock(m->write);
+
 
 //	pthread_mutex_lock(&fork[0]);
 //	pthread_mutex_unlock(&fork[0]);
@@ -34,8 +78,8 @@ void	*routine(void *arg)
 
 	if (m->arg.nbr_eat > 1)
 	{
-		dinning(thread, m->fork);
-		usleep(1);
+		dinning(m, thread, m->fork);
+//		usleep(1);
 	}
 	return(0);
 }
@@ -53,7 +97,7 @@ int thread_init(t_main *m)
 	{
 		m->i_main = i;
 		status = pthread_create(&cur->id, NULL, routine, m);
-		usleep(1);
+//		usleep(1);
 		cur = cur->next;
 		i++;
 

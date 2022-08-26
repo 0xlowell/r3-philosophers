@@ -41,71 +41,71 @@ include CMakeFiles/rules.ninja
 
 cmake_ninja_workdir = /Users/lzima/42_git/r3_philosophers/cmake-build-debug/
 # =============================================================================
-# Object build statements for EXECUTABLE target r3_philosophers
+# Object build statements for EXECUTABLE target philo
 
 
 #############################################
-# Order-only phony target for r3_philosophers
+# Order-only phony target for philo
 
-build cmake_object_order_depends_target_r3_philosophers: phony || CMakeFiles/r3_philosophers.dir
+build cmake_object_order_depends_target_philo: phony || CMakeFiles/philo.dir
 
-build CMakeFiles/r3_philosophers.dir/src/parsing.c.o: C_COMPILER__r3_philosophers_Debug /Users/lzima/42_git/r3_philosophers/src/parsing.c || cmake_object_order_depends_target_r3_philosophers
-  DEP_FILE = CMakeFiles/r3_philosophers.dir/src/parsing.c.o.d
+build CMakeFiles/philo.dir/src/parsing.c.o: C_COMPILER__philo_Debug /Users/lzima/42_git/r3_philosophers/src/parsing.c || cmake_object_order_depends_target_philo
+  DEP_FILE = CMakeFiles/philo.dir/src/parsing.c.o.d
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu11
   INCLUDES = -I/Users/lzima/42_git/r3_philosophers/includes
-  OBJECT_DIR = CMakeFiles/r3_philosophers.dir
-  OBJECT_FILE_DIR = CMakeFiles/r3_philosophers.dir/src
+  OBJECT_DIR = CMakeFiles/philo.dir
+  OBJECT_FILE_DIR = CMakeFiles/philo.dir/src
 
-build CMakeFiles/r3_philosophers.dir/src/main.c.o: C_COMPILER__r3_philosophers_Debug /Users/lzima/42_git/r3_philosophers/src/main.c || cmake_object_order_depends_target_r3_philosophers
-  DEP_FILE = CMakeFiles/r3_philosophers.dir/src/main.c.o.d
+build CMakeFiles/philo.dir/src/main.c.o: C_COMPILER__philo_Debug /Users/lzima/42_git/r3_philosophers/src/main.c || cmake_object_order_depends_target_philo
+  DEP_FILE = CMakeFiles/philo.dir/src/main.c.o.d
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu11
   INCLUDES = -I/Users/lzima/42_git/r3_philosophers/includes
-  OBJECT_DIR = CMakeFiles/r3_philosophers.dir
-  OBJECT_FILE_DIR = CMakeFiles/r3_philosophers.dir/src
+  OBJECT_DIR = CMakeFiles/philo.dir
+  OBJECT_FILE_DIR = CMakeFiles/philo.dir/src
 
-build CMakeFiles/r3_philosophers.dir/src/main_utils.c.o: C_COMPILER__r3_philosophers_Debug /Users/lzima/42_git/r3_philosophers/src/main_utils.c || cmake_object_order_depends_target_r3_philosophers
-  DEP_FILE = CMakeFiles/r3_philosophers.dir/src/main_utils.c.o.d
+build CMakeFiles/philo.dir/src/main_utils.c.o: C_COMPILER__philo_Debug /Users/lzima/42_git/r3_philosophers/src/main_utils.c || cmake_object_order_depends_target_philo
+  DEP_FILE = CMakeFiles/philo.dir/src/main_utils.c.o.d
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu11
   INCLUDES = -I/Users/lzima/42_git/r3_philosophers/includes
-  OBJECT_DIR = CMakeFiles/r3_philosophers.dir
-  OBJECT_FILE_DIR = CMakeFiles/r3_philosophers.dir/src
+  OBJECT_DIR = CMakeFiles/philo.dir
+  OBJECT_FILE_DIR = CMakeFiles/philo.dir/src
 
-build CMakeFiles/r3_philosophers.dir/src/print.c.o: C_COMPILER__r3_philosophers_Debug /Users/lzima/42_git/r3_philosophers/src/print.c || cmake_object_order_depends_target_r3_philosophers
-  DEP_FILE = CMakeFiles/r3_philosophers.dir/src/print.c.o.d
+build CMakeFiles/philo.dir/src/print.c.o: C_COMPILER__philo_Debug /Users/lzima/42_git/r3_philosophers/src/print.c || cmake_object_order_depends_target_philo
+  DEP_FILE = CMakeFiles/philo.dir/src/print.c.o.d
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu11
   INCLUDES = -I/Users/lzima/42_git/r3_philosophers/includes
-  OBJECT_DIR = CMakeFiles/r3_philosophers.dir
-  OBJECT_FILE_DIR = CMakeFiles/r3_philosophers.dir/src
+  OBJECT_DIR = CMakeFiles/philo.dir
+  OBJECT_FILE_DIR = CMakeFiles/philo.dir/src
 
-build CMakeFiles/r3_philosophers.dir/src/utils.c.o: C_COMPILER__r3_philosophers_Debug /Users/lzima/42_git/r3_philosophers/src/utils.c || cmake_object_order_depends_target_r3_philosophers
-  DEP_FILE = CMakeFiles/r3_philosophers.dir/src/utils.c.o.d
+build CMakeFiles/philo.dir/src/utils.c.o: C_COMPILER__philo_Debug /Users/lzima/42_git/r3_philosophers/src/utils.c || cmake_object_order_depends_target_philo
+  DEP_FILE = CMakeFiles/philo.dir/src/utils.c.o.d
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu11
   INCLUDES = -I/Users/lzima/42_git/r3_philosophers/includes
-  OBJECT_DIR = CMakeFiles/r3_philosophers.dir
-  OBJECT_FILE_DIR = CMakeFiles/r3_philosophers.dir/src
+  OBJECT_DIR = CMakeFiles/philo.dir
+  OBJECT_FILE_DIR = CMakeFiles/philo.dir/src
 
-build CMakeFiles/r3_philosophers.dir/src/linked_list.c.o: C_COMPILER__r3_philosophers_Debug /Users/lzima/42_git/r3_philosophers/src/linked_list.c || cmake_object_order_depends_target_r3_philosophers
-  DEP_FILE = CMakeFiles/r3_philosophers.dir/src/linked_list.c.o.d
+build CMakeFiles/philo.dir/src/linked_list.c.o: C_COMPILER__philo_Debug /Users/lzima/42_git/r3_philosophers/src/linked_list.c || cmake_object_order_depends_target_philo
+  DEP_FILE = CMakeFiles/philo.dir/src/linked_list.c.o.d
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu11
   INCLUDES = -I/Users/lzima/42_git/r3_philosophers/includes
-  OBJECT_DIR = CMakeFiles/r3_philosophers.dir
-  OBJECT_FILE_DIR = CMakeFiles/r3_philosophers.dir/src
+  OBJECT_DIR = CMakeFiles/philo.dir
+  OBJECT_FILE_DIR = CMakeFiles/philo.dir/src
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target r3_philosophers
+# Link build statements for EXECUTABLE target philo
 
 
 #############################################
-# Link the executable r3_philosophers
+# Link the executable philo
 
-build r3_philosophers: C_EXECUTABLE_LINKER__r3_philosophers_Debug CMakeFiles/r3_philosophers.dir/src/parsing.c.o CMakeFiles/r3_philosophers.dir/src/main.c.o CMakeFiles/r3_philosophers.dir/src/main_utils.c.o CMakeFiles/r3_philosophers.dir/src/print.c.o CMakeFiles/r3_philosophers.dir/src/utils.c.o CMakeFiles/r3_philosophers.dir/src/linked_list.c.o
+build philo: C_EXECUTABLE_LINKER__philo_Debug CMakeFiles/philo.dir/src/parsing.c.o CMakeFiles/philo.dir/src/main.c.o CMakeFiles/philo.dir/src/main_utils.c.o CMakeFiles/philo.dir/src/print.c.o CMakeFiles/philo.dir/src/utils.c.o CMakeFiles/philo.dir/src/linked_list.c.o
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15
-  OBJECT_DIR = CMakeFiles/r3_philosophers.dir
+  OBJECT_DIR = CMakeFiles/philo.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_FILE = r3_philosophers
-  TARGET_PDB = r3_philosophers.dbg
+  TARGET_FILE = philo
+  TARGET_PDB = philo.dbg
 
 
 #############################################
@@ -141,7 +141,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 #############################################
 # Folder: /Users/lzima/42_git/r3_philosophers/cmake-build-debug
 
-build all: phony r3_philosophers
+build all: phony philo
 
 # =============================================================================
 # Built-in targets
@@ -150,14 +150,14 @@ build all: phony r3_philosophers
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | ../CMakeLists.txt /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.22.3/CMakeCCompiler.cmake CMakeFiles/3.22.3/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | ../CMakeLists.txt /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.22.3/CMakeCCompiler.cmake CMakeFiles/3.22.3/CMakeCXXCompiler.cmake CMakeFiles/3.22.3/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build ../CMakeLists.txt /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.22.3/CMakeCCompiler.cmake CMakeFiles/3.22.3/CMakeSystem.cmake: phony
+build ../CMakeLists.txt /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.22/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.22.3/CMakeCCompiler.cmake CMakeFiles/3.22.3/CMakeCXXCompiler.cmake CMakeFiles/3.22.3/CMakeSystem.cmake: phony
 
 
 #############################################
