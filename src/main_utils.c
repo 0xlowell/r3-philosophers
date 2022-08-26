@@ -33,19 +33,31 @@ double	timer_ms(struct timeval start, struct timeval now)
 
 int	exit_program(t_main *m)
 {
-	if (!m->fork )
-		free_f_nd_p(m);
-	if (!m->p)
-		free_f_nd_p(m);
+	if (m->fork )
+		free_fork(m);
+	if (m->write)
+		free_write(m);
+	if (!m->head)
+		del_lst(&m->head, &m->tail);
 	m = NULL;
 	return (-1);
 }
 
-void	free_f_nd_p(t_main *m)
+void	free_write(t_main *m)
+{
+	if (!m->write || m->write != NULL)
+	{
+		pthread_mutex_destroy(m->write);
+		free(m->write);
+		m->write = NULL;
+	}
+}
+
+void	free_fork(t_main *m)
 {
 	int	i;
 
-	if (m->fork != NULL)
+	if (!m->fork)
 	{
 		i = 0;
 		while (i < m->arg.nbr)
@@ -53,14 +65,7 @@ void	free_f_nd_p(t_main *m)
 		free(m->fork);
 		m->fork = NULL;
 	}
-	if (!m->p)
-	{
-		i = 0;
-		while (i <= m->arg.nbr)
-			free(&m->p[i++]);
-		free(m->p);
-		m->p = NULL;
-	}
+
 }
 
 int	error_message(char *error)

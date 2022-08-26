@@ -4,82 +4,68 @@
 
 #include "../includes/philosophers.h"
 
-void	action(t_main *m, t_node *p, long fork1, long fork2)
+
+void	dinning(t_node *thread, pthread_mutex_t *fork)
 {
-	pthread_mutex_lock(&(m->fork[fork1]));
-	print_take_fork(m, p);
-	pthread_mutex_lock(&(m->fork[fork2]));
-	print_take_fork(m, p);
-	print_eat(m, p);
-	usleep(m->arg.eat);
-	timestamp();
-	pthread_mutex_unlock(&m->fork[fork1]);
-	pthread_mutex_unlock(&m->fork[fork2]);
-	print_sleep(m, p);
-	usleep(m->arg.sleep);
-	print_thinking(m, p);
+	printf("thread->i_node %d\n", thread->i_node);
+	(void)fork;
+
+//	pthread_mutex_lock(&fork[0]);
+//	pthread_mutex_unlock(&fork[0]);
 }
 
-void	dinning(t_main *m, t_node* p)
-{
-	m->nbr_node = (int)m->arg.nbr;
-	if (m->nbr_node == 1)
-		action(m, p, 0, m->arg.nbr - 1);
-	if (m->nbr_node % 2 == 0)
-	{
-		usleep(800);
-		action(m, p, 1, 2);
-	}
-	else
-		action(m, p, p->nbr_node - 1, p->nbr_node- 2);
-}
+//void	action(t_main *m, t_node *cur, long fork1, long fork2);
 
-void	*p_thread(void *mm)
+void	*routine(void *arg)
 {
 	t_main *m;
-	m = (t_main *)mm;
+	t_node *thread;
 
-	timestamp();
-//	gettimeofday(&m->p->time_eat, NULL);
-	if (m->arg.nbr_eat != -1)
-	{
-		m->p->eated = 0;
-		while (m->d_or_a != 1 && m->p->eated++ < m->arg.nbr_eat)
-			dinning(m, m->p);
-	}
-	else
-		while (m->d_or_a != 1)
-			dinning(m, m->p);
-	return (0);
-}
+	m = (t_main *)arg;
+	thread = m->head;
+	/* link the thread node number with the number of time it was called pthread_create
+	 * so, thread->i_node < m->i_main means that we loop until we match the thread corresponding
+	 * by reaching to the thread->next. All because, we only can get m->head, and we need to get to
+	 * our right thread.
+	 * */
+	while (thread->i_node < m->i_main)
+		thread = thread->next;
+//	printf("m->thread %d: %p\n", thread->i_node, thread);
 
-void	init_philo(t_main *m)
-{
-	if (m)
+	if (m->arg.nbr_eat > 1)
 	{
-		m->p = malloc(m->arg.nbr * sizeof(int));
-		mem_check(m->p);
+		dinning(thread, m->fork);
+		usleep(1);
 	}
+	return(0);
 }
 
 int thread_init(t_main *m)
 {
-	int status;
-	int i;
-	t_node *cur;
+	int		status;
+	int		i;
+	t_node	*cur;
 
-	init_philo(m);
 	status = 0;
+	cur = m->head;
 	i = 0;
-	while (i < m->arg.nbr && status == 0)
+	while (cur != NULL && status == 0)
 	{
-		//todo
-		//increment struct node to stock id, better than p tab
-		status = pthread_create(&(m->p[i].id), NULL, p_thread, m);
-		printf("i: %d\n %p\n", i, &(m->p->id));
-		printf("status: %d\n", status);
+		m->i_main = i;
+		status = pthread_create(&cur->id, NULL, routine, m);
 		usleep(1);
-		m->p->nbr_node = i;
+		cur = cur->next;
+		i++;
+
+	}
+	cur = m->head;
+	i = 0;
+	while (cur != NULL && status == 0)
+	{
+		if (pthread_join(cur->id, NULL) != 0)
+			return(ERROR);
+		cur = cur->next;
+		printf("finish %d\n", i);
 		i++;
 	}
 	if (status != 0)
@@ -87,6 +73,12 @@ int thread_init(t_main *m)
 	return (0);
 }
 
+//int did_eat(t_main *m)
+//{
+//	//todo
+//}
+
+//
 int	main(int argc, char **argv)
 {
 	t_main	main;
@@ -140,4 +132,69 @@ int	main(int argc, char **argv)
 		return(exit_program(&main));
 	if (thread_init(&main) == ERROR)
 		return (exit_program(&main));
+//	if (pthread_create(&main.checker, NULL, check_death, &main) != 0)
+//		return(exit_program(&main));
 }
+
+
+
+//void	action(t_main *m, t_node *cur, long fork1, long fork2)
+//{
+//	printf("action\n");
+//	pthread_mutex_lock(&(m->fork[fork1]));
+//	print_take_fork(m, cur);
+//	pthread_mutex_lock(&(m->fork[fork2]));
+//	print_take_fork(m, cur);
+//	print_eat(m, cur);
+//	printf("action - m->arg.eat %ld\n", m->arg.eat);
+//	usleep(m->arg.eat);
+//	timestamp();
+//	pthread_mutex_unlock(&m->fork[fork1]);
+//	pthread_mutex_unlock(&m->fork[fork2]);
+//	print_sleep(m, cur);
+//	usleep(m->arg.sleep);
+//	print_thinking(m, cur);
+//}
+//
+
+//{
+//	printf("launch dinning\n");
+//	printf("i_node %d \n", cur->i_node);
+//	m->i_main = (int)m->arg.nbr;
+//	if (m->i_main == 1)
+//		action(m, cur, 0, m->arg.nbr - 1);
+//	if (m->i_main % 2 == 0)
+//	{
+//		action(m, cur, cur->i_node -1 , cur->i_node - 2);
+//		usleep(800);
+//	}
+//	else
+//		action(m, cur, cur->i_node - 1, cur->i_node - 2);
+//}
+//
+//void	*routine(void *main)
+//{
+//	printf("routine\n");
+//	t_main	*m;
+//	t_node	*node;
+//
+//	m = (t_main *)main;
+//	node = m->head;
+//	timestamp();
+//	while (node && node->next)
+//		node = node->next;
+//	node->eated = 0;
+//	if (m->arg.nbr_eat != -1)
+//	{
+//		node->eated = 0;
+//		while (/*m->d_or_a != 1*/ node->eated++ < m->arg.nbr_eat)
+//			dinning(m, m->head);
+//	}
+//	else
+//		while (m->d_or_a != 1)
+//		{
+//			printf("i_node in routine %d \n", node->i_node);
+//			dinning(m, m->head);
+//		}
+//	return (0);
+//}

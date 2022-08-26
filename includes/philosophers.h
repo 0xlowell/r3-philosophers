@@ -71,7 +71,7 @@ typedef struct s_node
 	struct s_node	*next;		/*next node*/
 	struct s_node	*prev;		/*previous node*/
 	pthread_t 		id;
-	int 			nbr_node;
+	int 			i_node;
 	struct timeval	time_eat;
 	int 			eated;
 	struct timeval	now;
@@ -82,9 +82,9 @@ typedef struct s_main
 	t_arg			arg;		/*data*/
 	pthread_mutex_t *fork;		/*mutex, known as "fork" in philosophers dinning problems*/
 	int 			nbr_p;
-	t_node			*p;
-	int 			nbr_node;
+	int 			i_main;
 	int				d_or_a;		/*states*/
+	pthread_t 		checker;
 	pthread_mutex_t	*write;		/* lock writing in term */
 	struct timeval	start;		/*start of gettimeofday()*/
 	t_node			*head;		/*head node of linked list node*/
@@ -96,18 +96,18 @@ typedef struct s_main
  * main.c
  */
 int		main(int argc, char **argv);
-double	timer_ms(struct timeval start, struct timeval now);
 void	print_take_fork(t_main *m, t_node *p);
 void	action(t_main *m, t_node *p, long fork1, long fork2);
-void	dinning(t_main *m, t_node* p);
-void	*p_thread(void *mm);
+void	dinning(t_node *thread,  pthread_mutex_t* p);
+void	*routine(void *main);
 int 	thread_init(t_main *m);
 /*
  * main_utils.c
 */
 int		error_message(char *error);							/*print *error message*/
 int		exit_program(t_main *m);							/*exit program in a proper way*/
-void	free_f_nd_p(t_main *m);
+void	free_fork(t_main *m);
+void	free_write(t_main *m);
 double	timer_ms(struct timeval start, struct timeval now);
 long long    timestamp(void);
 /*

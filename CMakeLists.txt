@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.21.1)
-project(r3_philosophers C)
+project(philo)
 
 set(CMAKE_C_STANDARD 11)
 
 include_directories(includes)
 
-add_executable(r3_philosophers
+add_executable(
         includes/philosophers.h
         src/parsing.c
         src/main.c

@@ -3,17 +3,23 @@
 //
 
 #include "../includes/philosophers.h"
-
+/* init fork and write lock */
 int set_up_f_nd_p(t_main *m)
 {
 	int i;
 
+	m->fork = ft_calloc(m->arg.nbr, sizeof(pthread_mutex_t));
+	if (mem_check(m->fork) == 1)
+		return (ERROR);
+	m->write = ft_calloc(m->arg.nbr, sizeof(pthread_mutex_t));
+	if (mem_check(m->fork) == 1)
+		return (ERROR);
 	i = 0;
 	while (i < m->arg.nbr)
 		if (pthread_mutex_init(&(m->fork[i++]), NULL) != 0)
 			return (exit_program(m));
-	//if ((pthread_mutex_init(m->write, NULL)) != 0)
-		//return (exit_program(m));
+	if ((pthread_mutex_init(m->write, NULL)) != 0)
+		return (exit_program(m));
 	return (0);
 }
 
@@ -74,10 +80,6 @@ int parse_args(t_main *m, int argc, char **argv)
 	/* usleep fct is in microseconds, our input is in milli */
 	m->arg.eat *= 1000;
 	m->arg.sleep *= 1000;
-	/* memory allocation for mutex (empty), known as "fork" ready to be filled in process*/
-	m->fork = ft_calloc(m->arg.nbr, sizeof(pthread_mutex_t));
-	if (mem_check(m->fork) == 1)
-		return (ERROR);
 	/* check error in arguments */
 	if (error_args_limit(m) == ERROR)
 		return (ERROR);

@@ -33,7 +33,7 @@ int	add_node(t_node **head, t_node **tail, int nbr)
 		return (1);
 	cur->next = NULL;
 	cur->prev = NULL;
-	cur->nbr_node = nbr;
+	cur->i_node = nbr;
 	if (*head == NULL)
 	{
 		*head = cur;
@@ -54,10 +54,10 @@ int	init_lst(t_main *m)
 
 	m->head = NULL;
 	m->tail = NULL;
-	m->nbr_node = 0;
+	m->i_main = 0;
 	check = 0;
-	while (m->nbr_node < m->arg.nbr && check != 1)
-		check = add_node(&m->head, &m->tail, m->nbr_node++);
+	while (m->i_main < m->arg.nbr && check != 1)
+		check = add_node(&m->head, &m->tail, m->i_main++);
 	if (check == 1)
 		check = del_lst(&m->head, &m->tail);
 	printf("init_list bottom\n");

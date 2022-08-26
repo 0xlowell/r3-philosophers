@@ -51,36 +51,43 @@ build cmake_object_order_depends_target_r3_philosophers: phony || CMakeFiles/r3_
 
 build CMakeFiles/r3_philosophers.dir/src/parsing.c.o: C_COMPILER__r3_philosophers_Debug /Users/lzima/42_git/r3_philosophers/src/parsing.c || cmake_object_order_depends_target_r3_philosophers
   DEP_FILE = CMakeFiles/r3_philosophers.dir/src/parsing.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15
-  INCLUDES = -I/Users/lzima/42_git/r3_philosophers/exemple/42_philosophers/philo/includes -I/Users/lzima/42_git/r3_philosophers/includes
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu11
+  INCLUDES = -I/Users/lzima/42_git/r3_philosophers/includes
   OBJECT_DIR = CMakeFiles/r3_philosophers.dir
   OBJECT_FILE_DIR = CMakeFiles/r3_philosophers.dir/src
 
 build CMakeFiles/r3_philosophers.dir/src/main.c.o: C_COMPILER__r3_philosophers_Debug /Users/lzima/42_git/r3_philosophers/src/main.c || cmake_object_order_depends_target_r3_philosophers
   DEP_FILE = CMakeFiles/r3_philosophers.dir/src/main.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15
-  INCLUDES = -I/Users/lzima/42_git/r3_philosophers/exemple/42_philosophers/philo/includes -I/Users/lzima/42_git/r3_philosophers/includes
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu11
+  INCLUDES = -I/Users/lzima/42_git/r3_philosophers/includes
   OBJECT_DIR = CMakeFiles/r3_philosophers.dir
   OBJECT_FILE_DIR = CMakeFiles/r3_philosophers.dir/src
 
 build CMakeFiles/r3_philosophers.dir/src/main_utils.c.o: C_COMPILER__r3_philosophers_Debug /Users/lzima/42_git/r3_philosophers/src/main_utils.c || cmake_object_order_depends_target_r3_philosophers
   DEP_FILE = CMakeFiles/r3_philosophers.dir/src/main_utils.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15
-  INCLUDES = -I/Users/lzima/42_git/r3_philosophers/exemple/42_philosophers/philo/includes -I/Users/lzima/42_git/r3_philosophers/includes
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu11
+  INCLUDES = -I/Users/lzima/42_git/r3_philosophers/includes
   OBJECT_DIR = CMakeFiles/r3_philosophers.dir
   OBJECT_FILE_DIR = CMakeFiles/r3_philosophers.dir/src
 
 build CMakeFiles/r3_philosophers.dir/src/print.c.o: C_COMPILER__r3_philosophers_Debug /Users/lzima/42_git/r3_philosophers/src/print.c || cmake_object_order_depends_target_r3_philosophers
   DEP_FILE = CMakeFiles/r3_philosophers.dir/src/print.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15
-  INCLUDES = -I/Users/lzima/42_git/r3_philosophers/exemple/42_philosophers/philo/includes -I/Users/lzima/42_git/r3_philosophers/includes
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu11
+  INCLUDES = -I/Users/lzima/42_git/r3_philosophers/includes
   OBJECT_DIR = CMakeFiles/r3_philosophers.dir
   OBJECT_FILE_DIR = CMakeFiles/r3_philosophers.dir/src
 
 build CMakeFiles/r3_philosophers.dir/src/utils.c.o: C_COMPILER__r3_philosophers_Debug /Users/lzima/42_git/r3_philosophers/src/utils.c || cmake_object_order_depends_target_r3_philosophers
   DEP_FILE = CMakeFiles/r3_philosophers.dir/src/utils.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15
-  INCLUDES = -I/Users/lzima/42_git/r3_philosophers/exemple/42_philosophers/philo/includes -I/Users/lzima/42_git/r3_philosophers/includes
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu11
+  INCLUDES = -I/Users/lzima/42_git/r3_philosophers/includes
+  OBJECT_DIR = CMakeFiles/r3_philosophers.dir
+  OBJECT_FILE_DIR = CMakeFiles/r3_philosophers.dir/src
+
+build CMakeFiles/r3_philosophers.dir/src/linked_list.c.o: C_COMPILER__r3_philosophers_Debug /Users/lzima/42_git/r3_philosophers/src/linked_list.c || cmake_object_order_depends_target_r3_philosophers
+  DEP_FILE = CMakeFiles/r3_philosophers.dir/src/linked_list.c.o.d
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu11
+  INCLUDES = -I/Users/lzima/42_git/r3_philosophers/includes
   OBJECT_DIR = CMakeFiles/r3_philosophers.dir
   OBJECT_FILE_DIR = CMakeFiles/r3_philosophers.dir/src
 
@@ -92,7 +99,7 @@ build CMakeFiles/r3_philosophers.dir/src/utils.c.o: C_COMPILER__r3_philosophers_
 #############################################
 # Link the executable r3_philosophers
 
-build r3_philosophers: C_EXECUTABLE_LINKER__r3_philosophers_Debug CMakeFiles/r3_philosophers.dir/src/parsing.c.o CMakeFiles/r3_philosophers.dir/src/main.c.o CMakeFiles/r3_philosophers.dir/src/main_utils.c.o CMakeFiles/r3_philosophers.dir/src/print.c.o CMakeFiles/r3_philosophers.dir/src/utils.c.o
+build r3_philosophers: C_EXECUTABLE_LINKER__r3_philosophers_Debug CMakeFiles/r3_philosophers.dir/src/parsing.c.o CMakeFiles/r3_philosophers.dir/src/main.c.o CMakeFiles/r3_philosophers.dir/src/main_utils.c.o CMakeFiles/r3_philosophers.dir/src/print.c.o CMakeFiles/r3_philosophers.dir/src/utils.c.o CMakeFiles/r3_philosophers.dir/src/linked_list.c.o
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15
   OBJECT_DIR = CMakeFiles/r3_philosophers.dir
   POST_BUILD = :
