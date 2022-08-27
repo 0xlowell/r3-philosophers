@@ -37,10 +37,10 @@
 
 # define INT_MAX 	2147483647
 # define INT_MIN 	-2147483648
-# define NARG 		"\n❌ Number of arguments incorrect, use 4 or 5 arguments\n"
-# define NPHILO 	"\n❌ Number of philosophers too low, use at least one, max 200\n"
-# define INT_LIM 	"\n❌ Args value exceed limit required\n"
-# define NDIGIT 	"\n❌ Args value aren't digits\n"
+# define NARG 		"\n ❌ Number of arguments incorrect, use 4 or 5 arguments\n"
+# define NPHILO 	"\n ❌ Number of philosophers too low, use at least one, max 200\n"
+# define INT_LIM 	"\n ❌ Args value exceed limit required\n"
+# define NDIGIT 	"\n ❌ Args value aren't digits\n"
 # define ERROR		1
 # define TRUE		0
 # define FALSE		-1
@@ -71,16 +71,16 @@ typedef struct s_node
 	struct s_node	*next;		/*next node*/
 	struct s_node	*prev;		/*previous node*/
 	pthread_t 		id;
+	pthread_mutex_t fork;		/*mutex, known as "fork" in philosophers dinning problems*/
 	int 			i_node;
-	struct timeval	time_eat;
+	long long 		last_supper;
 	int 			eated;
-	struct timeval	now;
+	long long 		now;
 }			t_node;
 
 typedef struct s_main
 {
 	t_arg			arg;		/*data*/
-	pthread_mutex_t *fork;		/*mutex, known as "fork" in philosophers dinning problems*/
 	int 			nbr_p;
 	int 			i_main;
 	int				d_or_a;		/*states*/
@@ -96,19 +96,14 @@ typedef struct s_main
  * main.c
  */
 int		main(int argc, char **argv);
-void	print_take_fork(t_main *m, t_node *p);
-void	action(t_main *m, t_node *p, long fork1, long fork2);
-void	dinning(t_main *main, t_node *thread,  pthread_mutex_t* p);
-void	*routine(void *main);
-int 	thread_init(t_main *m);
 /*
  * main_utils.c
 */
-int		error_message(char *error);							/*print *error message*/
-int		exit_program(t_main *m);							/*exit program in a proper way*/
-void	free_fork(t_main *m);
-void	free_write(t_main *m);
-double	timer_ms(struct timeval start, struct timeval now);
+int			error_message(char *error);							/*print *error message*/
+int			exit_program(t_main *m);							/*exit program in a proper way*/
+void		free_fork(t_main *m);
+void		free_write(t_main *m);
+//double	timer_ms(struct timeval start, struct timeval now);
 long long    timestamp(void);
 /*
  * parsing.c DONE
@@ -119,22 +114,31 @@ int		error_args_limit(t_main *m);						/*handle argv's error*/
 int		set_up_f_nd_p(t_main *m);								/*fill up fork allocated memory with pthread_mutex_t*/
 int		parse_and_init(t_main *m, int argc, char **argv);	/*sub-main for parsing and initialisation*/
 /*
- * libft_utils.c
+ * thread.c
+ */
+void	dinning(t_main *m, t_node *thread);
+//void	check_death(void *arg);
+void	*routine(void *arg);
+int		thread_init(t_main *m);
+void	starvation(t_main *m);
+/*
+ * utils.c
 */
 int		mem_check(void *ptr);								/*memory allocation security*/
-int	ft_isdigit(int c);										/*RTFM*/
+int		ft_isdigit(int c);									/*RTFM*/
 long	ft_atol(const char *str);
 void	*ft_calloc(size_t count, size_t size);
-//void	*ft_bzero(void *s, size_t n);
 void    *ft_memset(void *b, int c, size_t len);
+void	ft_usleep(long sleep);
 
 /*
  * print.c
 */
-void	print_take_fork(t_main *m, t_node *p);
-void	print_eat(t_main *m, t_node *p);
-void	print_sleep(t_main *m, t_node *p);
-void	print_thinking(t_main *m, t_node *p);
+void	print_died(t_main *m, t_node *thread);
+void	print_fork(t_main *m, t_node* thread);
+void	print_eating(t_main *m, t_node *thread);
+void	print_sleeping(t_main *m, t_node *thread);
+void	print_thinking(t_main *m, t_node *thread);
 /*
  * linked_list.c
  */

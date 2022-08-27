@@ -91,6 +91,13 @@ build CMakeFiles/philo.dir/src/linked_list.c.o: C_COMPILER__philo_Debug /Users/l
   OBJECT_DIR = CMakeFiles/philo.dir
   OBJECT_FILE_DIR = CMakeFiles/philo.dir/src
 
+build CMakeFiles/philo.dir/src/thread.c.o: C_COMPILER__philo_Debug /Users/lzima/42_git/r3_philosophers/src/thread.c || cmake_object_order_depends_target_philo
+  DEP_FILE = CMakeFiles/philo.dir/src/thread.c.o.d
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu11
+  INCLUDES = -I/Users/lzima/42_git/r3_philosophers/includes
+  OBJECT_DIR = CMakeFiles/philo.dir
+  OBJECT_FILE_DIR = CMakeFiles/philo.dir/src
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target philo
@@ -99,7 +106,7 @@ build CMakeFiles/philo.dir/src/linked_list.c.o: C_COMPILER__philo_Debug /Users/l
 #############################################
 # Link the executable philo
 
-build philo: C_EXECUTABLE_LINKER__philo_Debug CMakeFiles/philo.dir/src/parsing.c.o CMakeFiles/philo.dir/src/main.c.o CMakeFiles/philo.dir/src/main_utils.c.o CMakeFiles/philo.dir/src/print.c.o CMakeFiles/philo.dir/src/utils.c.o CMakeFiles/philo.dir/src/linked_list.c.o
+build philo: C_EXECUTABLE_LINKER__philo_Debug CMakeFiles/philo.dir/src/parsing.c.o CMakeFiles/philo.dir/src/main.c.o CMakeFiles/philo.dir/src/main_utils.c.o CMakeFiles/philo.dir/src/print.c.o CMakeFiles/philo.dir/src/utils.c.o CMakeFiles/philo.dir/src/linked_list.c.o CMakeFiles/philo.dir/src/thread.c.o
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15
   OBJECT_DIR = CMakeFiles/philo.dir
   POST_BUILD = :

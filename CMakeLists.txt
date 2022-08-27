@@ -12,4 +12,5 @@ add_executable(philo
         src/main_utils.c
         src/print.c
         src/utils.c
-        src/linked_list.c)
+        src/linked_list.c
+        src/thread.c)

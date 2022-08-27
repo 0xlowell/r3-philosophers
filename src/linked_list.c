@@ -34,6 +34,8 @@ int	add_node(t_node **head, t_node **tail, int nbr)
 	cur->next = NULL;
 	cur->prev = NULL;
 	cur->i_node = nbr;
+	if (pthread_mutex_init(&cur->fork, NULL) != 0)
+		return (1);
 	if (*head == NULL)
 	{
 		*head = cur;
@@ -57,9 +59,11 @@ int	init_lst(t_main *m)
 	m->i_main = 0;
 	check = 0;
 	while (m->i_main < m->arg.nbr && check != 1)
-		check = add_node(&m->head, &m->tail, m->i_main++);
+	{
+		check = add_node(&m->head, &m->tail, m->i_main);
+		m->i_main++;
+	}
 	if (check == 1)
 		check = del_lst(&m->head, &m->tail);
-	printf("init_list bottom\n");
 	return (check);
 }

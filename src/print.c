@@ -4,55 +4,42 @@
 
 #include "../includes/philosophers.h"
 
-void	print_take_fork(t_main *m, t_node *cur)
+
+void	print_died(t_main *m, t_node *thread)
 {
-	//todo Bug when this fonction is called, exit the program weirdly and
-	// EXIT
-	gettimeofday(&cur->now, NULL);
 	pthread_mutex_lock(m->write);
-	printf("_______________________________________________________\n");
-	printf("\n ⏰ %.lld \t 🥄 %d node has taken a fork\n", timestamp(), cur->i_node);
-	printf("_______________________________________________________\n");
+	printf("%lld \t ⚰️ %d died \n", timestamp(), thread->i_node);
 	pthread_mutex_unlock(m->write);
 }
 
-void	print_eat(t_main *m, t_node *cur)
+void	print_fork(t_main *m, t_node* thread)
 {
-	gettimeofday(&cur->now, NULL);
 	pthread_mutex_lock(m->write);
-	printf("_______________________________________________________\n");
-	printf("\n ⏰ %.lld \t 🥄 %d node eat\n", timestamp(), cur->i_node);
-	printf("_______________________________________________________\n");
-	pthread_mutex_unlock(m->write);
-
-}
-
-void	print_sleep(t_main *m, t_node *cur)
-{
-	gettimeofday(&cur->now, NULL);
-	pthread_mutex_lock(m->write);
-	printf("_______________________________________________________\n");
-	printf("\n ⏰ %.lld \t 🥄 %d node sleep\n", timestamp(), cur->i_node);
-	printf("_______________________________________________________\n");
+	if (m->d_or_a == 0)
+		printf("%lld \t 🔧 %d has taken a fork \n", timestamp(), thread->i_node);
 	pthread_mutex_unlock(m->write);
 }
 
-void	print_thinking(t_main *m, t_node *cur)
+void	print_eating(t_main *m, t_node *thread)
 {
-	gettimeofday(&cur->now, NULL);
 	pthread_mutex_lock(m->write);
-	printf("_______________________________________________________\n");
-	printf("\n ⏰ %.lld \t 🥄 %d node think\n", timestamp(), cur->i_node);
-	printf("_______________________________________________________\n");
+	if (m->d_or_a == 0)
+		printf("%lld \t 🛠 %d is eating \n", timestamp(), thread->i_node);
 	pthread_mutex_unlock(m->write);
 }
 
-void	print_death(t_main *m, t_node *cur)
+void	print_sleeping(t_main *m, t_node *thread)
 {
-	gettimeofday(&cur->now, NULL);
 	pthread_mutex_lock(m->write);
-	printf("_______________________________________________________\n");
-	printf("\n ⏰ %.lld \t 🥄 %d node died\n", timestamp(), cur->i_node);
-	printf("_______________________________________________________\n");
+	if (m->d_or_a == 0)
+		printf("%lld \t 😴 %d is sleeping \n", timestamp(), thread->i_node);
+	pthread_mutex_unlock(m->write);
+}
+
+void	print_thinking(t_main *m, t_node *thread)
+{
+	pthread_mutex_lock(m->write);
+	if (m->d_or_a == 0)
+		printf("%lld \t 😩 %d is thinking \n", timestamp(), thread->i_node);
 	pthread_mutex_unlock(m->write);
 }

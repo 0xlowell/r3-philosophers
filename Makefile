@@ -25,7 +25,7 @@ RESET	= \033[0m
 
 
 SRCS_DIR		= ./src/
-SRCS_FILES		= main.c main_utils.c utils.c parsing.c print.c linked_list.c
+SRCS_FILES		= main.c main_utils.c utils.c parsing.c print.c linked_list.c thread.c
 
 SRCS			:= ${patsubst %, ${SRCS_DIR}%, ${SRCS_FILES}}
 

@@ -68,3 +68,12 @@ void    *ft_memset(void *b, int c, size_t len)
 	}
 	return (b);
 }
+
+void	ft_usleep(long sleep)
+{
+	long long	sleeping_end;
+
+	sleeping_end = timestamp() + sleep / 1000;
+	while (timestamp() + 1 <= sleeping_end)
+		usleep(100);
+}
