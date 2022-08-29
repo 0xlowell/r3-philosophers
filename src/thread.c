@@ -1,40 +1,33 @@
-//
-// Created by Lowell Zima on 8/8/22.
-//
 
 #include "../includes/philosophers.h"
 
-
-
-int dead_or_alive(t_main *m, t_node *thread)
-{
-	thread->last_supper = thread->now;
-	thread->now = timestamp();
-	if (thread->now - thread->last_supper >= m->arg.death)
-	{
-		m->d_or_a = 1;
-		print_died(m, thread);
-		return (1);
-	}
-	if (m->arg.nbr_eat != -1 && thread->eated >= m->arg.nbr_eat)
-	{
-		thread->full++;
-		if (thread->full == m->arg.nbr - 1)
-			m->d_or_a = 1;
-		pthread_mutex_lock(m->write);
-		printf("%lld \t 🤢 %d is full \n", timestamp(), thread->i_node);
-		pthread_mutex_unlock(m->write);
-		return (1);
-	}
-	return (0);
-}
+//void	dead_or_alive(t_main *m, t_node *cur)
+//{
+//	printf("tst\n");
+//	printf("cur->now:%lld \t - cur->last_supper:%lld = %lld\t > %ld\n", cur->now, cur->last_supper, ( cur->now - cur->last_supper), m->arg.death);
+//	cur->last_supper = cur->now;
+//	cur->now = timestamp();
+//	if (cur->now - cur->last_supper >= m->arg.death)
+//	{
+//		m->d_or_a = 1;
+//		print_died(m, cur);
+//		printf("died in dead_or_alive\n");
+//	}
+//}
 
 void	dinning(t_main *m, t_node *thread)
 {
-	dead_or_alive(m, thread);
-	thread->eated++;
 	pthread_mutex_lock(&thread->fork);
 	print_fork(m, thread);
+	if (m->arg.nbr == 1)
+	{
+		pthread_mutex_unlock(&thread->fork);
+//		m->d_or_a = 1;
+		while (m->d_or_a == 0)
+			;
+		return ;
+//		print_died(m, thread);
+	}
 	if (thread->next != NULL)
 	{
 		pthread_mutex_lock(&thread->next->fork);
@@ -46,6 +39,7 @@ void	dinning(t_main *m, t_node *thread)
 		print_fork(m, thread);
 	}
 	print_eating(m, thread);
+	thread->last_supper = timestamp();
 	if (m->d_or_a == 0)
 		ft_usleep(m->arg.eat);
 	pthread_mutex_unlock(&thread->fork);
@@ -66,21 +60,15 @@ void	*routine(void *arg)
 
 	m = (t_main *)arg;
 	thread = m->head;
+	pthread_mutex_lock(m->write);
 	while (thread->i_node < m->i_main)
 		thread = thread->next;
-	while (m->d_or_a == 0 && m->arg.nbr_eat >= thread->eated)
-	{
-		if (m->arg.nbr % 2 == 0)
-		{
-			usleep(400);
-			dinning(m, thread);
-		}
-		else
-		{
-			usleep(200);
-			dinning(m, thread);
-		}
-	}
+	m->i_main++;
+	pthread_mutex_unlock(m->write);
+	if (thread->i_node % 2 != 0)
+		usleep(m->arg.eat);
+	while (m->d_or_a == 0 && (thread->eated < m->arg.nbr_eat || m->arg.nbr_eat == -1))
+		dinning(m, thread);
 	return(0);
 }
 
@@ -92,13 +80,12 @@ int thread_init(t_main *m)
 
 	status = 0;
 	cur = m->head;
+	m->i_main = 0;
 	i = 0;
 	while (cur != NULL && status == 0)
 	{
-		m->i_main = i;
 		status = pthread_create(&cur->id, NULL, routine, m);
-//		cur->start = timestamp();
-		usleep(100);
+//		usleep(100);
 		cur = cur->next;
 		i++;
 	}
@@ -106,22 +93,6 @@ int thread_init(t_main *m)
 		return (ERROR);
 	return(0);
 }
-//
-//void	check_death(void *arg)
-//{
-//	t_main *m;
-//	t_node *cur;
-//
-//	m = (t_main *)arg;
-//	cur = m->head;
-//	while (m->d_or_a == 0)
-//	{
-//		if (dead_or_alive(m, cur) == 1)
-//			break;
-//		cur = cur->next;
-//	}
-//	starvation(m);
-//}
 
 void	starvation(t_main *m)
 {
@@ -133,4 +104,5 @@ void	starvation(t_main *m)
 		pthread_join(cur->id, NULL);
 		cur = cur->next;
 	}
+	exit_program(m);
 }

@@ -73,7 +73,6 @@ typedef struct s_node
 	pthread_mutex_t fork;		/*mutex, known as "fork" in philosophers dinning problems*/
 	int 			i_node;
 	int 			eated;
-	int 			full;
 	long long 		last_supper;
 	long long 		now;
 	long long 		start;
@@ -82,7 +81,7 @@ typedef struct s_node
 typedef struct s_main
 {
 	t_arg			arg;		/*data*/
-	int 			nbr_p;
+	int 			count;
 	int 			i_main;
 	int				d_or_a;		/*states*/
 	long long 		now;
@@ -118,6 +117,7 @@ int		parse_and_init(t_main *m, int argc, char **argv);	/*sub-main for parsing an
  * thread.c
  */
 void	dinning(t_main *m, t_node *thread);
+void		dead_or_alive(t_main *m, t_node *cur);
 //void	check_death(void *arg);
 void	*routine(void *arg);
 int		thread_init(t_main *m);
@@ -144,9 +144,9 @@ void	print_thinking(t_main *m, t_node *thread);
  * linked_list.c
  */
 void	last_del_lst(t_node **tail);
-int	del_lst(t_node	**head, t_node **tail);
-int	add_node(t_node **head, t_node **tail, int nbr);
-int	init_lst(t_main *m);
+int		del_lst(t_node	**head, t_node **tail);
+int		add_node(t_node **head, t_node **tail, int nbr);
+int		init_lst(t_main *m);
 
 
 #endif

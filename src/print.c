@@ -24,7 +24,7 @@ void	print_eating(t_main *m, t_node *thread)
 {
 	pthread_mutex_lock(m->write);
 	if (m->d_or_a == 0)
-		printf("%lld \t 🛠 %d is eating \t %d meal(s) \n", timestamp(), thread->i_node, thread->eated);
+		printf("%lld \t 🛠 %d is eating \t %d meal(s) \n", timestamp(), thread->i_node, ++thread->eated);
 	pthread_mutex_unlock(m->write);
 }
 

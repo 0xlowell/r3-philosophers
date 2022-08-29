@@ -23,31 +23,22 @@ long long    timestamp(void)
 int	exit_program(t_main *m)
 {
 	if (m->write)
-		free_write(m);
-	if (!m->head)
+		pthread_mutex_destroy(m->write);
+	if (m->head)
+	{
+		free_fork(m);
 		del_lst(&m->head, &m->tail);
+	}
 	m = NULL;
 	return (-1);
 }
 
-void	free_write(t_main *m)
-{
-	if (!m->write || m->write != NULL)
-	{
-		pthread_mutex_destroy(m->write);
-		free(m->write);
-		m->write = NULL;
-	}
-}
-
 void	free_fork(t_main *m)
 {
-	int	i;
 	t_node *cur;
 
 	cur = m->head;
-	i = 0;
-	while (i < m->arg.nbr)
+	while (cur)
 	{
 		pthread_mutex_destroy(&cur->fork);
 		cur = cur->next;

@@ -25,3 +25,11 @@
 5	131	1661630646000000000	CMakeFiles/philo.dir/src/linked_list.c.o	923771f60c429339
 5	131	1661630646000000000	CMakeFiles/philo.dir/src/thread.c.o	8bd2579b97f16170
 131	213	1661630646000000000	philo	e6ebd16996947368
+5	167	1661776064000000000	CMakeFiles/philo.dir/src/utils.c.o	dc86e1c3e46ad705
+5	167	1661776064000000000	CMakeFiles/philo.dir/src/linked_list.c.o	923771f60c429339
+4	178	1661776064000000000	CMakeFiles/philo.dir/src/parsing.c.o	ad33ea2372fcf0e
+4	178	1661776064000000000	CMakeFiles/philo.dir/src/main_utils.c.o	ba90112f7cfc6bb6
+4	178	1661776064000000000	CMakeFiles/philo.dir/src/print.c.o	f87d6bda2b6e69e0
+5	178	1661776064000000000	CMakeFiles/philo.dir/src/thread.c.o	8bd2579b97f16170
+4	191	1661776064000000000	CMakeFiles/philo.dir/src/main.c.o	10b6ab2b5dffb834
+191	249	1661776064000000000	philo	e6ebd16996947368
