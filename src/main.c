@@ -50,7 +50,24 @@
 
 #include "../includes/philosophers.h"
 
-//todo link dinning fonction with limit and set up checker for death
+int its_a_good_day_to_die(t_main *m)
+{
+	t_node *cur;
+
+	cur = m->head;
+	while (cur)
+	{
+//		printf("now %lld - last_supper %lld = %lld > %ld\n", m->now, cur->last_supper, (m->now - cur->start), m->arg.death);
+		cur->now = timestamp();
+		if ((cur->now - cur->last_supper) >= m->arg.death)
+		{
+			print_died(m, cur);
+			return (1);
+		}
+		cur = cur->next;
+	}
+	return (0);
+}
 
 int	main(int argc, char **argv)
 {
@@ -66,6 +83,7 @@ int	main(int argc, char **argv)
 		printf("error init\n");
 		return (exit_program(&main));
 	}
-	while (main.d_or_a != 1)
+	main.now = timestamp();
+	while (main.d_or_a != ERROR && its_a_good_day_to_die(&main) != ERROR)
 		usleep(100);
 }

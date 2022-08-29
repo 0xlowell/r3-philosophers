@@ -18,9 +18,11 @@ int dead_or_alive(t_main *m, t_node *thread)
 	}
 	if (m->arg.nbr_eat != -1 && thread->eated >= m->arg.nbr_eat)
 	{
-		m->d_or_a = 1;
+		thread->full++;
+		if (thread->full == m->arg.nbr - 1)
+			m->d_or_a = 1;
 		pthread_mutex_lock(m->write);
-		printf("%lld \t ⚰️ %d full \n", timestamp(), thread->i_node);
+		printf("%lld \t 🤢 %d is full \n", timestamp(), thread->i_node);
 		pthread_mutex_unlock(m->write);
 		return (1);
 	}
@@ -34,24 +36,23 @@ void	dinning(t_main *m, t_node *thread)
 	pthread_mutex_lock(&thread->fork);
 	print_fork(m, thread);
 	if (thread->next != NULL)
+	{
 		pthread_mutex_lock(&thread->next->fork);
+		print_fork(m, thread);
+	}
 	else
+	{
 		pthread_mutex_lock(&m->head->fork);
-	print_fork(m, thread);
+		print_fork(m, thread);
+	}
 	print_eating(m, thread);
 	if (m->d_or_a == 0)
 		ft_usleep(m->arg.eat);
 	pthread_mutex_unlock(&thread->fork);
 	if (thread->next != NULL)
-	{
-		printf("next fork\n");
 		pthread_mutex_unlock(&thread->next->fork);
-	}
 	else
-	{
-		printf("head fork\n");
 		pthread_mutex_unlock(&m->head->fork);
-	}
 	print_sleeping(m, thread);
 	if (m->d_or_a == 0)
 		ft_usleep(m->arg.sleep);
@@ -96,6 +97,7 @@ int thread_init(t_main *m)
 	{
 		m->i_main = i;
 		status = pthread_create(&cur->id, NULL, routine, m);
+//		cur->start = timestamp();
 		usleep(100);
 		cur = cur->next;
 		i++;

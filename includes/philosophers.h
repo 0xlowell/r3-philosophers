@@ -42,7 +42,6 @@
 # define INT_LIM 	"\n ❌ Args value exceed limit required\n"
 # define NDIGIT 	"\n ❌ Args value aren't digits\n"
 # define ERROR		1
-# define TRUE		0
 # define FALSE		-1
 
 /*
@@ -73,9 +72,11 @@ typedef struct s_node
 	pthread_t 		id;
 	pthread_mutex_t fork;		/*mutex, known as "fork" in philosophers dinning problems*/
 	int 			i_node;
-	long long 		last_supper;
 	int 			eated;
+	int 			full;
+	long long 		last_supper;
 	long long 		now;
+	long long 		start;
 }			t_node;
 
 typedef struct s_main
@@ -84,7 +85,7 @@ typedef struct s_main
 	int 			nbr_p;
 	int 			i_main;
 	int				d_or_a;		/*states*/
-	pthread_t 		checker;
+	long long 		now;
 	pthread_mutex_t	*write;		/* lock writing in term */
 	struct timeval	start;		/*start of gettimeofday()*/
 	t_node			*head;		/*head node of linked list node*/

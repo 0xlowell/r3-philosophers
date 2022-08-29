@@ -40,19 +40,19 @@ void	free_write(t_main *m)
 	}
 }
 
-//void	free_fork(t_main *m)
-//{
-//	int	i;
-//
-//	if (!m->fork)
-//	{
-//		i = 0;
-//		while (i < m->arg.nbr)
-//			pthread_mutex_destroy(&m->fork[i++]);
-//		free(m->fork);
-//		m->fork = NULL;
-//	}
-//}
+void	free_fork(t_main *m)
+{
+	int	i;
+	t_node *cur;
+
+	cur = m->head;
+	i = 0;
+	while (i < m->arg.nbr)
+	{
+		pthread_mutex_destroy(&cur->fork);
+		cur = cur->next;
+	}
+}
 
 int	error_message(char *error)
 {

@@ -23,7 +23,6 @@ void	last_del_lst(t_node **tail)
 	free(del);
 }
 
-
 int	add_node(t_node **head, t_node **tail, int nbr)
 {
 	t_node	*cur;
@@ -34,6 +33,7 @@ int	add_node(t_node **head, t_node **tail, int nbr)
 	cur->next = NULL;
 	cur->prev = NULL;
 	cur->i_node = nbr;
+	cur->start = 0;
 	if (pthread_mutex_init(&cur->fork, NULL) != 0)
 		return (1);
 	if (*head == NULL)
