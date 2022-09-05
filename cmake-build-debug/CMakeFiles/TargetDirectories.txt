@@ -1,3 +1,0 @@
-/Users/lzima/42_git/r3_philosophers/cmake-build-debug/CMakeFiles/philo.dir
-/Users/lzima/42_git/r3_philosophers/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/lzima/42_git/r3_philosophers/cmake-build-debug/CMakeFiles/rebuild_cache.dir
