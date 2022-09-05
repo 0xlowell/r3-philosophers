@@ -1,19 +1,21 @@
-//
-// Created by Lowell Zima on 8/8/22.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lzima <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/29 19:25:52 by lzima             #+#    #+#             */
+/*   Updated: 2022/08/29 19:26:00 by lzima            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/philosophers.h"
 
 int	ft_isdigit(int c)
 {
-	if (c >= 48 && c <= 57)
+	if (c >= '0' && c <= '9')
 		return (c);
-	return (0);
-}
-
-int	mem_check(void *ptr)
-{
-	if (ptr == NULL)
-		return (1);
 	return (0);
 }
 
@@ -43,9 +45,9 @@ long	ft_atol(const char *str)
 	return (res * minus);
 }
 
-void    *ft_calloc(size_t count, size_t size)
+void	*ft_calloc(size_t count, size_t size)
 {
-	char    *memoryallocation;
+	char	*memoryallocation;
 
 	memoryallocation = malloc(count * size);
 	if (memoryallocation == NULL)
@@ -54,10 +56,10 @@ void    *ft_calloc(size_t count, size_t size)
 	return (memoryallocation);
 }
 
-void    *ft_memset(void *b, int c, size_t len)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	size_t                  i;
-	unsigned char   *btab;
+	size_t			i;
+	unsigned char	*btab;
 
 	btab = (unsigned char *)b;
 	i = 0;

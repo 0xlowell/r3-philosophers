@@ -1,6 +1,14 @@
-//
-// Created by Lowell Zima on 8/8/22.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   linked_list.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lzima <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/29 18:59:06 by lzima             #+#    #+#             */
+/*   Updated: 2022/08/29 18:59:34 by lzima            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "philosophers.h"
 
@@ -33,7 +41,6 @@ int	add_node(t_node **head, t_node **tail, int nbr)
 	cur->next = NULL;
 	cur->prev = NULL;
 	cur->i_node = nbr;
-	cur->start = 0;
 	if (pthread_mutex_init(&cur->fork, NULL) != 0)
 		return (1);
 	if (*head == NULL)
@@ -52,7 +59,7 @@ int	add_node(t_node **head, t_node **tail, int nbr)
 
 int	init_lst(t_main *m)
 {
-	int check;
+	int	check;
 
 	m->head = NULL;
 	m->tail = NULL;
@@ -66,4 +73,11 @@ int	init_lst(t_main *m)
 	if (check == 1)
 		check = del_lst(&m->head, &m->tail);
 	return (check);
+}
+
+int	mem_check(void *ptr)
+{
+	if (ptr == NULL)
+		return (1);
+	return (0);
 }

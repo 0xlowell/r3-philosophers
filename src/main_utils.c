@@ -1,19 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lzima <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/29 19:19:34 by lzima             #+#    #+#             */
+/*   Updated: 2022/08/29 19:19:37 by lzima            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-static long long    init_timestamp(void)
+static long long	init_timestamp(void)
 {
-	struct timeval    tv;
-	long long        time;
+	struct timeval	tv;
+	long long		time;
 
 	gettimeofday(&tv, NULL);
 	time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
 	return (time);
 }
 
-long long    timestamp(void)
+long long	timestamp(void)
 {
-	static long long    time;
+	static long long	time;
 
 	if (time == 0)
 		time = init_timestamp();
@@ -23,7 +34,10 @@ long long    timestamp(void)
 int	exit_program(t_main *m)
 {
 	if (m->write)
+	{
 		pthread_mutex_destroy(m->write);
+		free(m->write);
+	}
 	if (m->head)
 	{
 		free_fork(m);
@@ -35,7 +49,7 @@ int	exit_program(t_main *m)
 
 void	free_fork(t_main *m)
 {
-	t_node *cur;
+	t_node	*cur;
 
 	cur = m->head;
 	while (cur)
@@ -45,8 +59,15 @@ void	free_fork(t_main *m)
 	}
 }
 
-int	error_message(char *error)
+void	starvation(t_main *m)
 {
-	printf("%s", error);
-	return (1);
+	t_node	*cur;
+
+	cur = m->head;
+	while (cur)
+	{
+		pthread_join(cur->id, NULL);
+		cur = cur->next;
+	}
+	exit_program(m);
 }

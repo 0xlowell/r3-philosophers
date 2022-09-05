@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philosophers.h                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lzima <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/29 18:58:21 by lzima             #+#    #+#             */
+/*   Updated: 2022/08/29 18:58:27 by lzima            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 /* general rules
  *
@@ -38,7 +49,7 @@
 # define INT_MAX 	2147483647
 # define INT_MIN 	-2147483648
 # define NARG 		"\n ❌ Number of arguments incorrect, use 4 or 5 arguments\n"
-# define NPHILO 	"\n ❌ Number of philosophers too low, use at least one, max 200\n"
+# define NPHILO 	"\n ❌ Number of philosophers too low\n"
 # define INT_LIM 	"\n ❌ Args value exceed limit required\n"
 # define NDIGIT 	"\n ❌ Args value aren't digits\n"
 # define ERROR		1
@@ -48,105 +59,91 @@
  * Variables Structures
 */
 
-typedef struct	s_arg
+typedef struct s_arg
 {
-	long 			nbr;		/*number_of_philosophers:
- * The number of philosophers and also the number of forks.*/
-	long 			death;		/*time_to_die (in milliseconds):
- * If a philosopher didn’t start eating time_to_die milliseconds since the beginning
- * of their last meal or the beginning of the sim- ulation, they die.*/
-	long 			eat;		/*time_to_eat (in milliseconds):
- * The time it takes for a philosopher to eat. During that time, they will need to hold two forks.*/
-	long 			sleep;		/*time_to_sleep (in milliseconds):
- * The time a philosopher will spend sleeping.*/
-	long 			nbr_eat;	/*number_of_times_each_philosopher_must_eat (optional argument):
- * If all philosophers have eaten at least
- * number_of_times_each_philosopher_must_eat times, the simulation stops.
- * If not specified, the simulation stops when a philosopher dies.*/
+	long	nbr;
+	long	death;
+	long	eat;
+	long	sleep;
+	long	nbr_eat;
 }			t_arg;
 
 typedef struct s_node
 {
-	struct s_node	*next;		/*next node*/
-	struct s_node	*prev;		/*previous node*/
-	pthread_t 		id;
-	pthread_mutex_t fork;		/*mutex, known as "fork" in philosophers dinning problems*/
-	int 			i_node;
-	int 			eated;
-	long long 		last_supper;
-	long long 		now;
-	long long 		start;
+	struct s_node	*next;
+	struct s_node	*prev;
+	pthread_t		id;
+	pthread_mutex_t	fork;
+	int				i_node;
+	int				eated;
+	long long		last_supper;
+	long long		now;
 }			t_node;
 
 typedef struct s_main
 {
-	t_arg			arg;		/*data*/
-	int 			count;
-	int 			i_main;
-	int				d_or_a;		/*states*/
-	long long 		now;
-	pthread_mutex_t	*write;		/* lock writing in term */
-	struct timeval	start;		/*start of gettimeofday()*/
-	t_node			*head;		/*head node of linked list node*/
-	t_node			*tail;		/*tail node of linked list node*/
+	t_arg			arg;
+	int				count;
+	int				i_main;
+	int				d_or_a;
+	long long		now;
+	pthread_mutex_t	*write;
+	t_node			*head;
+	t_node			*tail;
 }			t_main;
 
 /* ---- Files .c ---- */
 /*
  * main.c
  */
-int		main(int argc, char **argv);
+int			main(int argc, char **argv);
+int			its_a_good_day_to_die(t_main *m);
 /*
  * main_utils.c
 */
-int			error_message(char *error);							/*print *error message*/
-int			exit_program(t_main *m);							/*exit program in a proper way*/
+int			exit_program(t_main *m);
 void		free_fork(t_main *m);
-void		free_write(t_main *m);
-//double	timer_ms(struct timeval start, struct timeval now);
-long long    timestamp(void);
+long long	timestamp(void);
+void		starvation(t_main *m);
 /*
- * parsing.c DONE
+ * parsing.c
 */
-int		parse_args(t_main *m, int argc, char **argv);		/*store argv into struct arg*/
-int		error_arg_digit(int argc, char **argv);
-int		error_args_limit(t_main *m);						/*handle argv's error*/
-int		set_up_f_nd_p(t_main *m);								/*fill up fork allocated memory with pthread_mutex_t*/
-int		parse_and_init(t_main *m, int argc, char **argv);	/*sub-main for parsing and initialisation*/
+int			parse_args(t_main *m, int argc, char **argv);
+int			error_arg_digit(int argc, char **argv);
+int			error_args_limit(t_main *m);
+int			set_up_f_nd_p(t_main *m);
+int			parse_and_init(t_main *m, int argc, char **argv);
 /*
  * thread.c
  */
-void	dinning(t_main *m, t_node *thread);
-void		dead_or_alive(t_main *m, t_node *cur);
-//void	check_death(void *arg);
-void	*routine(void *arg);
-int		thread_init(t_main *m);
-void	starvation(t_main *m);
+void		dinning(t_main *m, t_node *thread);
+void		*routine(void *arg);
+int			thread_init(t_main *m);
+int			error_message(char *error);
 /*
  * utils.c
 */
-int		mem_check(void *ptr);								/*memory allocation security*/
-int		ft_isdigit(int c);									/*RTFM*/
-long	ft_atol(const char *str);
-void	*ft_calloc(size_t count, size_t size);
-void    *ft_memset(void *b, int c, size_t len);
-void	ft_usleep(long sleep);
+int			ft_isdigit(int c);
+long		ft_atol(const char *str);
+void		*ft_calloc(size_t count, size_t size);
+void		*ft_memset(void *b, int c, size_t len);
+void		ft_usleep(long sleep);
 
 /*
  * print.c
 */
-void	print_died(t_main *m, t_node *thread);
-void	print_fork(t_main *m, t_node* thread);
-void	print_eating(t_main *m, t_node *thread);
-void	print_sleeping(t_main *m, t_node *thread);
-void	print_thinking(t_main *m, t_node *thread);
+void		print_died(t_main *m, t_node *thread);
+void		print_fork(t_main *m, t_node *thread);
+void		print_eating(t_main *m, t_node *thread);
+void		print_sleeping(t_main *m, t_node *thread);
+void		print_thinking(t_main *m, t_node *thread);
 /*
  * linked_list.c
  */
-void	last_del_lst(t_node **tail);
-int		del_lst(t_node	**head, t_node **tail);
-int		add_node(t_node **head, t_node **tail, int nbr);
-int		init_lst(t_main *m);
-
+void		last_del_lst(t_node **tail);
+int			del_lst(t_node	**head, t_node **tail);
+int			add_node(t_node **head, t_node **tail, int nbr);
+int			init_lst(t_main *m);
+int			mem_check(void *ptr);
 
 #endif
