@@ -1,5 +1,5 @@
  <h1>Philosophers</h1>
-# [![lzima's 42 Philosophers Score](https://badge42.vercel.app/api/v2/cl1nk4f8f004009lb75fyii0c/project/2596490)](https://github.com/JaeSeoKim/badge42)
+[![lzima's 42 Philosophers Score](https://badge42.vercel.app/api/v2/cl1nk4f8f004009lb75fyii0c/project/2596490)](https://github.com/JaeSeoKim/badge42)
 <h2>Summary</h2>
 <p>
   In this project, you will learn the basics of threading a process.
